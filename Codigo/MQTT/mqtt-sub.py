@@ -1,12 +1,12 @@
 # Biblioteca
-import paho.mqtt import client as mqtt_client
+from paho.mqtt import client as mqtt_client
 import random
 
 # Datos del broker
-broker = '3.122.60.139'
+broker = '3.122.69.139'
 port = 1883
 topic = "codigoIoT/mqtt/python"
-client_id = f'python-mqtt-{random.randit(0,1000)}'
+client_id = f'python-mqtt-{random.randint(0,1000)}'
 
 # Conexion al broker
 def connect_mqtt():
