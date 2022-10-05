@@ -50,7 +50,7 @@ def publish(client, mensaje):
 print ("Buscando rostro")
 
 #df = DeepFace.find(img_path = "img1.jpg", db_path = "C:/workspace/my_db")
-df = DeepFace.find(img_path = "/home/karen/Documents/GitHub/Apertura-puertas-reconocimiento-facial/Imagen/face.jpg", db_path = "/home/karen/Documents/GitHub/Apertura-puertas-reconocimiento-facial/my_db", enforce_detection="false")
+df = DeepFace.find(img_path = "/home/karen/Documents/GitHub/Apertura-puertas-reconocimiento-facial/Imagen/timothee.jpeg", db_path = "/home/karen/Documents/GitHub/Apertura-puertas-reconocimiento-facial/my_db", enforce_detection="false")
 print("Resultado")
 print(df)
 print ("Imagen de mayor similitud")
