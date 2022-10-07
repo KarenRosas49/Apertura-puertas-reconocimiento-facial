@@ -4,6 +4,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("img_src", help ="Imagen a buscar en la base de datos")
 parser.add_argument("db_path", help = "Ruta de la base de datos")
 args = parser.parse_args()
+print(args.img_src)
 
 ruta = args.img_src + " " + args.db_path
 
