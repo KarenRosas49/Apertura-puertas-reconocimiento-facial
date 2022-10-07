@@ -4,6 +4,7 @@ import pandas as pd
 from paho.mqtt import client as mqtt_client
 import random
 import time
+import argparse
 
 # Variables y constantes
 broker = '127.0.0.1'
@@ -44,6 +45,11 @@ def publish(client, mensaje):
 ### Inicio del programa
 # Buscar Rostro
 print ("Buscando rostro")
+
+parser = argparse.ArgumentParser()
+parser.add_argument("img_src", help ="Imagen a buscar en la base de datos")
+parser.add_argument("db_path", help = "Ruta de la base de datos")
+args = parser.parse_args()
 
 # df = DeepFace.find(img_path = "img1.jpg", db_path = "C:/workspace/my_db")
 df = DeepFace.find (img_path = "/home/karen/Documents/GitHub/Apertura-puertas-reconocimiento-facial/Imagen/timothee.jpeg", db_path = "/home/karen/Documents/GitHub/Apertura-puertas-reconocimiento-facial/my_db", enforce_detection = "false")
