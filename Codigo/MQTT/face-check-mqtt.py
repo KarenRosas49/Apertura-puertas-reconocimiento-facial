@@ -4,15 +4,17 @@ import pandas as pd
 from paho.mqtt import client as mqtt_client
 import random
 import time
-import argparse
 
-# Variables y constantes
+# Variables y constantes - Datos del boker
 broker = '127.0.0.1'
 port = 1883
 topic = "codigoIoT/mqtt/python"
-topic2 = "codigoIoT/mqtt/index"
 # generate client ID with pub prefix randomly
 client_id = f'python-mqtt-{random.randint(0, 1000)}'
+# username = 'emqx'
+# password = 'public'
+
+# Definición de funciones
 
 # Conexion al broker
 def connect_mqtt():
@@ -28,7 +30,7 @@ def connect_mqtt():
     client.connect(broker, port)
     return client
 
-def publish(client, mensaje):
+def publish2(client, mensaje):
     #while True:
     time.sleep(1)
     msg = mensaje
@@ -41,26 +43,20 @@ def publish(client, mensaje):
         print(f"Send `{msg}` to topic `{topic}`")
     else:
         print(f"Failed to send message to topic {topic}")
-
-### Inicio del programa
+    
 # Buscar Rostro
 print ("Buscando rostro")
-
-parser = argparse.ArgumentParser()
-parser.add_argument("img_src", help ="Imagen a buscar en la base de datos")
-parser.add_argument("db_path", help = "Ruta de la base de datos")
-args = parser.parse_args()
 
 # df = DeepFace.find(img_path = "img1.jpg", db_path = "C:/workspace/my_db")
 df = DeepFace.find (img_path = "/home/karen/Documents/GitHub/Apertura-puertas-reconocimiento-facial/Imagen/timothee.jpeg", db_path = "/home/karen/Documents/GitHub/Apertura-puertas-reconocimiento-facial/my_db", enforce_detection = "false")
 print ("Resultado ")
 print (df)
-json_view = df.to_json(orient="index")
-print ("La expresion en JSON de los resultados es: ")
-print (json_view)
+print ("Imagen de mayor similitud")
+print (df.identity[0])
 
-
-# Envio
+print ("Conectandose al broker")
 client = connect_mqtt()
 client.loop_start()
-publish(client, json_view)
+print ("Enviando mensaje")
+publish2(client, df.identity[0])
+print ("Mensaje enviado")
