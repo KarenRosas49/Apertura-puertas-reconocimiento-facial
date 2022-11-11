@@ -1,0 +1,804 @@
+[
+    {
+        "id": "ac66f122fa01a60e",
+        "type": "tab",
+        "label": "Apertura de puertas",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0ff48c53be17ce8a",
+        "type": "exec",
+        "z": "ac66f122fa01a60e",
+        "command": "python3 ~//Documents/GitHub/Apertura-puertas-reconocimiento-facial/Codigo/MQTT/face-check-arguments.py",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 840,
+        "y": 320,
+        "wires": [
+            [
+                "210e2de61f6bb1e3"
+            ],
+            [
+                "210e2de61f6bb1e3"
+            ],
+            [
+                "210e2de61f6bb1e3"
+            ]
+        ]
+    },
+    {
+        "id": "210e2de61f6bb1e3",
+        "type": "debug",
+        "z": "ac66f122fa01a60e",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1340,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "44fce00981fffc19",
+        "type": "inject",
+        "z": "ac66f122fa01a60e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": " ~/Documents/GitHub/Apertura-puertas-reconocimiento-facial/Imagen/timothee.jpeg ~/Documents/GitHub/Apertura-puertas-reconocimiento-facial/my_db",
+        "payloadType": "str",
+        "x": 330,
+        "y": 380,
+        "wires": [
+            [
+                "0ff48c53be17ce8a"
+            ]
+        ]
+    },
+    {
+        "id": "2b92e53b7c35ea4d",
+        "type": "mqtt in",
+        "z": "ac66f122fa01a60e",
+        "name": "",
+        "topic": "codigoIoT/mqtt/python",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b4301daa0db036b4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 640,
+        "wires": [
+            [
+                "959adc15d0c09a53",
+                "255908fb501ead8c",
+                "b18373675858050a",
+                "e379a1f6c3149316",
+                "73e23474c8998c4b",
+                "7d39ba63849070e6",
+                "4de82f6dd2d34fa8"
+            ]
+        ]
+    },
+    {
+        "id": "959adc15d0c09a53",
+        "type": "debug",
+        "z": "ac66f122fa01a60e",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "11fff0782f365171",
+        "type": "ui_button",
+        "z": "ac66f122fa01a60e",
+        "name": "",
+        "group": "d60af6173de1b989",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Analisis",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 320,
+        "wires": [
+            [
+                "3cbc9f524d2d481a"
+            ]
+        ]
+    },
+    {
+        "id": "d0e25608577a6d5e",
+        "type": "ui_text_input",
+        "z": "ac66f122fa01a60e",
+        "name": "",
+        "label": "Ruta de la imagen en disco",
+        "tooltip": "",
+        "group": "d60af6173de1b989",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 160,
+        "y": 160,
+        "wires": [
+            [
+                "59d3970258285411"
+            ]
+        ]
+    },
+    {
+        "id": "47d3aae66cfcc5e8",
+        "type": "ui_text_input",
+        "z": "ac66f122fa01a60e",
+        "name": "",
+        "label": "Ruta de la base de datos de rostros en disco",
+        "tooltip": "",
+        "group": "d60af6173de1b989",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 210,
+        "y": 220,
+        "wires": [
+            [
+                "82feb8d8c8b8e06a"
+            ]
+        ]
+    },
+    {
+        "id": "59d3970258285411",
+        "type": "function",
+        "z": "ac66f122fa01a60e",
+        "name": "Img Src",
+        "func": "global.set(\"img_src\", msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "82feb8d8c8b8e06a",
+        "type": "function",
+        "z": "ac66f122fa01a60e",
+        "name": "DB face",
+        "func": "global.set(\"my_db\", msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3cbc9f524d2d481a",
+        "type": "function",
+        "z": "ac66f122fa01a60e",
+        "name": "Append",
+        "func": "msg.payload = \" \" + global.get(\"img_src\") + \" \" + global.get(\"my_db\");\n return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 320,
+        "wires": [
+            [
+                "0ff48c53be17ce8a"
+            ]
+        ]
+    },
+    {
+        "id": "255908fb501ead8c",
+        "type": "ui_text",
+        "z": "ac66f122fa01a60e",
+        "group": "4bf060a280be539b",
+        "order": 1,
+        "width": 7,
+        "height": 8,
+        "name": "",
+        "label": "Respuesta MQTT",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 430,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "b18373675858050a",
+        "type": "function",
+        "z": "ac66f122fa01a60e",
+        "name": "Ruta mas relevante",
+        "func": "msg.payload = msg.payload[\"0\"].identity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 540,
+        "wires": [
+            [
+                "154d92e42dc1baa4",
+                "131b6c23f558aba2"
+            ]
+        ]
+    },
+    {
+        "id": "e379a1f6c3149316",
+        "type": "function",
+        "z": "ac66f122fa01a60e",
+        "name": "VGG mas relevante",
+        "func": "msg.payload = msg.payload[\"0\"][\"VGG-Face_cosine\"];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 620,
+        "wires": [
+            [
+                "a69239adb9c490ce",
+                "ada8892a9a5279dc"
+            ]
+        ]
+    },
+    {
+        "id": "154d92e42dc1baa4",
+        "type": "ui_text",
+        "z": "ac66f122fa01a60e",
+        "group": "4bf060a280be539b",
+        "order": 2,
+        "width": 7,
+        "height": 2,
+        "name": "",
+        "label": "Ruta mas relevante",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 770,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "a69239adb9c490ce",
+        "type": "ui_text",
+        "z": "ac66f122fa01a60e",
+        "group": "4bf060a280be539b",
+        "order": 3,
+        "width": 7,
+        "height": 1,
+        "name": "",
+        "label": "VGG mas relevante",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 710,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "ada8892a9a5279dc",
+        "type": "function",
+        "z": "ac66f122fa01a60e",
+        "name": "Porcentaje de similitud",
+        "func": "msg.payload = (1 - msg.payload)*100;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 620,
+        "wires": [
+            [
+                "f4a301df99d12f62"
+            ]
+        ]
+    },
+    {
+        "id": "f4a301df99d12f62",
+        "type": "ui_text",
+        "z": "ac66f122fa01a60e",
+        "group": "4bf060a280be539b",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Porcentaje de similitud",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 960,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "6dd30bf5ddde89f6",
+        "type": "inject",
+        "z": "ac66f122fa01a60e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 520,
+        "y": 480,
+        "wires": [
+            [
+                "131b6c23f558aba2"
+            ]
+        ]
+    },
+    {
+        "id": "131b6c23f558aba2",
+        "type": "string",
+        "z": "ac66f122fa01a60e",
+        "name": "",
+        "methods": [
+            {
+                "name": "delRightMost",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "/"
+                    }
+                ]
+            },
+            {
+                "name": "append",
+                "params": [
+                    {
+                        "type": "str",
+                        "value": "/info.json"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 710,
+        "y": 480,
+        "wires": [
+            [
+                "fd02351f476f4b41"
+            ]
+        ]
+    },
+    {
+        "id": "fd02351f476f4b41",
+        "type": "file in",
+        "z": "ac66f122fa01a60e",
+        "name": "",
+        "filename": "payload",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 880,
+        "y": 480,
+        "wires": [
+            [
+                "5c36109c53affa38"
+            ]
+        ]
+    },
+    {
+        "id": "5c36109c53affa38",
+        "type": "json",
+        "z": "ac66f122fa01a60e",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 1070,
+        "y": 480,
+        "wires": [
+            [
+                "de392276f9b95ddf",
+                "ac0c6c2883d5c2ee",
+                "fce0cfaae55ec4dd",
+                "7ac086851161bbc0"
+            ]
+        ]
+    },
+    {
+        "id": "de392276f9b95ddf",
+        "type": "ui_text",
+        "z": "ac66f122fa01a60e",
+        "group": "7aaaaa5d8ff6884e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Nombre",
+        "format": "{{msg.payload.nombre}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1240,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "ac0c6c2883d5c2ee",
+        "type": "ui_text",
+        "z": "ac66f122fa01a60e",
+        "group": "7aaaaa5d8ff6884e",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Cumpleaños",
+        "format": "{{msg.payload[\"cumpleaños\"]}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1250,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "fce0cfaae55ec4dd",
+        "type": "ui_text",
+        "z": "ac66f122fa01a60e",
+        "group": "7aaaaa5d8ff6884e",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Edad",
+        "format": "{{msg.payload.edad}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1230,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "7ac086851161bbc0",
+        "type": "ui_text",
+        "z": "ac66f122fa01a60e",
+        "group": "7aaaaa5d8ff6884e",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Nivel de acceso",
+        "format": "{{msg.payload.acceso}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1260,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "73e23474c8998c4b",
+        "type": "function",
+        "z": "ac66f122fa01a60e",
+        "name": "Indice de deteccion",
+        "func": "var indice = (1 - msg.payload[\"0\"][\"VGG-Face_cosine\"]) * 100;\nif(indice > 85){\n    msg.payload = \"Indice de coincidencia minimo alcanzado\";\n    global.set(\"indice_d\",1);\n} else{\n    msg.payload = \"Indice de coincidencia minimo no alcanzado\";\n    global.set(\"indice_d\", 0);\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 820,
+        "wires": [
+            [
+                "e17be822e6ade006"
+            ]
+        ]
+    },
+    {
+        "id": "e17be822e6ade006",
+        "type": "ui_text",
+        "z": "ac66f122fa01a60e",
+        "group": "f9bdef88fded3e8d",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Indice de deteccion",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 690,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "7d39ba63849070e6",
+        "type": "function",
+        "z": "ac66f122fa01a60e",
+        "name": "Longitud de resultado",
+        "func": "var lon = Object.keys(msg.payload).length;\nif(lon >= 3){\n    global.set(\"indice_l\",1);\n} else{\n    global.set(\"indice_l\", 0);\n}\nmsg.payload = lon;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 880,
+        "wires": [
+            [
+                "5ac5935c92e21d1b"
+            ]
+        ]
+    },
+    {
+        "id": "5ac5935c92e21d1b",
+        "type": "ui_text",
+        "z": "ac66f122fa01a60e",
+        "group": "f9bdef88fded3e8d",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Cantidad de resultados",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 750,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "7076f184df7edd99",
+        "type": "function",
+        "z": "ac66f122fa01a60e",
+        "name": "Condicion",
+        "func": "if((global.set(\"indice_d\") == 1) && (global.get(\"indice_l\") == 1))\n{\n    msg.payload = true;\n} else{\n    msg.payload = false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 980,
+        "wires": [
+            [
+                "7c9fe0974d484cc9",
+                "55bcffae2e17f5d7"
+            ]
+        ]
+    },
+    {
+        "id": "4de82f6dd2d34fa8",
+        "type": "delay",
+        "z": "ac66f122fa01a60e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 400,
+        "y": 980,
+        "wires": [
+            [
+                "7076f184df7edd99"
+            ]
+        ]
+    },
+    {
+        "id": "7c9fe0974d484cc9",
+        "type": "ui_switch",
+        "z": "ac66f122fa01a60e",
+        "name": "",
+        "label": "Estado de las puertas",
+        "tooltip": "",
+        "group": "f9bdef88fded3e8d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 860,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "55bcffae2e17f5d7",
+        "type": "mqtt out",
+        "z": "ac66f122fa01a60e",
+        "name": "",
+        "topic": "codigoIoT/mqtt/puerta",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b4301daa0db036b4",
+        "x": 820,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "b4301daa0db036b4",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d60af6173de1b989",
+        "type": "ui_group",
+        "name": "Analisis facial",
+        "tab": "6df1b7a75e9f3257",
+        "order": 1,
+        "disp": true,
+        "width": 8,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4bf060a280be539b",
+        "type": "ui_group",
+        "name": "Resultados",
+        "tab": "6df1b7a75e9f3257",
+        "order": 2,
+        "disp": true,
+        "width": 7,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7aaaaa5d8ff6884e",
+        "type": "ui_group",
+        "name": "Datos",
+        "tab": "6df1b7a75e9f3257",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f9bdef88fded3e8d",
+        "type": "ui_group",
+        "name": "Deteccion",
+        "tab": "6df1b7a75e9f3257",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6df1b7a75e9f3257",
+        "type": "ui_tab",
+        "name": "Apertura de puertas por reconocimiento facial",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    }
+]
